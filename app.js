@@ -1,4 +1,5 @@
-const contractAddress = '0x9Cfefa0CE19552c810280F15021e0A12633bbd3a'; // ← 替換成 Remix 部署後的地址
+
+const contractAddress = '0xB18161513c931324370Eb96684a5222c1335480B'; // ← 替換成 Remix 部署後的地址
 
 const contractABI = [
   // 合約ABI（從Remix編譯後獲取）
@@ -91,6 +92,11 @@ const contractABI = [
 						"type": "string"
 					},
 					{
+						"internalType": "string",
+						"name": "trainNumber",
+						"type": "string"
+					},
+					{
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
@@ -132,6 +138,11 @@ const contractABI = [
 			{
 				"internalType": "string",
 				"name": "_date",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_trainNumber",
 				"type": "string"
 			}
 		],
@@ -183,6 +194,11 @@ const contractABI = [
 			{
 				"internalType": "string",
 				"name": "date",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "trainNumber",
 				"type": "string"
 			},
 			{
@@ -270,46 +286,95 @@ async function connectWallet() {
 
 // 處理購票表單提交事件
 document.getElementById('ticketForm').addEventListener('submit', async (e) => {
-  e.preventDefault(); // 防止表單預設提交行為
+  e.preventDefault();
 
-  // 取得使用者填入的出發地、目的地和日期
   const departure = document.getElementById('departure').value;
   const destination = document.getElementById('destination').value;
   const date = document.getElementById('travelDate').value;
+  const trainNumber = document.getElementById('trainNumber').value;
 
   try {
-    // 呼叫合約函式 purchaseTicket 傳送交易
-    const tx = await contract.purchaseTicket(departure, destination, date);
-    await tx.wait(); // 等待交易確認
+	
+    // 1. 向後端查詢該車次是否存在
+    const res = await fetch(`http://localhost:3000/timeTable?departure=${departure}&destination=${destination}&train_number=${trainNumber}`);
+    const result = await res.json();
+
+    if (!result.found) {
+      alert('查無此車次，請確認輸入');
+      return;
+    }
+
+    // 2. 若車次存在，呼叫智能合約購買票
+    const tx = await contract.purchaseTicket(departure, destination, date, trainNumber);
+
+    await tx.wait();
     alert('購票成功！');
 
-    // 購票成功後重新載入票券資訊
+    // 3. 更新票券顯示
     await loadTickets();
   } catch (err) {
     console.error(err);
-    alert('交易失敗: ' + err.message); // 顯示錯誤訊息
+    alert('交易失敗: ' + err.message);
   }
 });
 
 
+
 // 從合約中取得並顯示使用者購買的所有票券
 async function loadTickets() {
-  const tickets = await contract.getMyTickets(); // 呼叫合約函式取得票券清單
-  const list = document.getElementById('myTickets'); // 顯示票券的區塊
-  if (!list) {
-    console.warn('無法找到 myTickets 元素');
-    return;  // 中止函式執行，避免錯誤
-  }
-  
-  list.innerHTML = ''; // 清空舊資料
+  const tickets = await contract.getMyTickets();
+  const list = document.getElementById('myTickets');
+  if (!list) return;
 
-  // 將每張票券資訊加入列表中
-  tickets.forEach((t, idx) => {
-    const li = document.createElement('li');
-    li.textContent = `${t.date}：${t.departure} → ${t.destination}`;
-    list.appendChild(li);
-  });
+  list.innerHTML = '';
+
+  for (const t of tickets) {
+    try {
+      const res = await fetch(`http://localhost:3000/timeTable?train_number=${encodeURIComponent(t.trainNumber)}`);
+      if (!res.ok) throw new Error('資料查詢失敗');
+
+      const result = await res.json();
+      const ticketBlock = document.createElement('div');
+      ticketBlock.className = 'ticket-block'; 
+
+      if (result.found) {
+        const train = result.train;
+        ticketBlock.innerHTML = `
+		<div class="train-info">
+			<div class="info-pair"><strong>日期：</strong><span>${t.date}</span></div>
+		</div>
+			<div class="train-info">
+			<div class="info-pair"><strong>車種：</strong><span>${train.train_type}</span></div>
+			<div class="info-pair"><strong>車次：</strong><span>${t.trainNumber}</span></div>
+		</div>
+			<div class="train-info">
+			<div class="info-pair"><strong>起點：</strong><span>${train.origin}</span></div>
+			<div class="info-pair"><strong>終點：</strong><span>${train.destination}</span></div>
+		</div>
+		<div class="train-info">
+			<div class="info-pair"><strong>出發：</strong><span>${train.departure_time}</span></div>
+			<div class="info-pair"><strong>抵達：</strong><span>${train.arrival_time}</span></div>
+			<div class="info-pair"><strong>行程時間：</strong><span>${train.duration}</span></div>
+			<div class="info-pair"><strong>路線：</strong><span>${train.route}</span></div>
+		</div>
+			<div class="train-info">
+			<div class="info-pair"><strong>票價：</strong><span>${train.price} 元</span></div>
+		</div>
+        `;
+      } else {
+        ticketBlock.textContent = `${t.date}：${t.departure} → ${t.destination} 車次:${t.trainNumber}（查無車次細節）`;
+      }
+
+      list.appendChild(ticketBlock);
+    } catch (err) {
+      console.error('查詢錯誤：', err);
+    }
+  }
 }
+
+
+
+
 
 // 若已經有 MetaMask，頁面載入時自動嘗試連接
 if (typeof window.ethereum !== 'undefined') {
@@ -389,6 +454,7 @@ document.addEventListener('click', (e) => {
     currentInput = null;
   }
 });
+
 
 
 

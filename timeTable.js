@@ -1,3 +1,4 @@
+
 // 用於記錄當前正在輸入的欄位（departure 或 destination）
 let currentInput = null;
 
@@ -118,4 +119,5 @@ document.getElementById('timeTableForm').addEventListener('submit', async (e) =>
   // 將表格加入畫面
   results.appendChild(table);
 });
+
 
