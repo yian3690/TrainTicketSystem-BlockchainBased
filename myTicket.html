@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的票券</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+  <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="header-bar">
+    <div class="header-content">
+      <div class="left-group">
+        <img src="img/logo.jpg" alt="火車LOGO" class="logo" />
+        <h1> 區塊鏈火車購票系統</h1>
+      </div>
+
+      <div class="right-group">
+        <a href="timeTable.html" class="header-button">時刻表查詢</a>
+        <a href="index.html" class="header-button">線上訂票</a>
+        <span class="header-button" onclick="connectWallet()">連接 MetaMask</span>
+        <a href="myTicket.html" class="header-button">我的票券</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="left-aligned">
+      <h2>我的車票</h2>
+    </div>
+    <div class = "main-block">
+      <p id="contractAddress">合約地址: </p>
+      <p id="accountArea"></p>
+
+     
+
+      <h2>🎫 我的票券</h2>
+      <ul id="myTickets"></ul>
+    </div>
+
+    
+
+  </main>
+
+  <!-- Footer Bar -->
+  <footer class="footer-bar">
+    <p>© 2025 火車購票系統 | Powered by Blockchain</p>
+  </footer>
+
+  
+  <!-- script 放在這裡 -->
+  <script src="app.js" defer></script>
+</body>
+</html>
