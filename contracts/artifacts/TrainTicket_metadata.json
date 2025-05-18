@@ -60,6 +60,31 @@
 				"type": "event"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "ticketId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "TicketRefunded",
+				"type": "event"
+			},
+			{
 				"inputs": [],
 				"name": "endTime",
 				"outputs": [
@@ -99,6 +124,11 @@
 								"type": "string"
 							},
 							{
+								"internalType": "string",
+								"name": "seat",
+								"type": "string"
+							},
+							{
 								"internalType": "address",
 								"name": "owner",
 								"type": "address"
@@ -107,6 +137,56 @@
 						"internalType": "struct TrainTicket.Ticket[]",
 						"name": "",
 						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMyTicketsWithIds",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "departure",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "destination",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "date",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "trainNumber",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "seat",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							}
+						],
+						"internalType": "struct TrainTicket.Ticket[]",
+						"name": "",
+						"type": "tuple[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
 					}
 				],
 				"stateMutability": "view",
@@ -146,9 +226,37 @@
 						"internalType": "string",
 						"name": "_trainNumber",
 						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "_seats",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expectedTotalPrice",
+						"type": "uint256"
 					}
 				],
-				"name": "purchaseTicket",
+				"name": "purchaseTickets",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "ticketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expectedPrice",
+						"type": "uint256"
+					}
+				],
+				"name": "refundTicket",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -201,6 +309,11 @@
 					{
 						"internalType": "string",
 						"name": "trainNumber",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "seat",
 						"type": "string"
 					},
 					{
@@ -280,11 +393,11 @@
 			]
 		},
 		"contracts/TrainTicket.sol": {
-			"keccak256": "0xa9974aee9d1549206a65426ee75d86869540f588593bea67439c6fb8aa16204b",
+			"keccak256": "0x2fdc247d2e92897d255c5bd75bf07b327e116612d265220a6fde2c0b0f3c75f2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://39410111b2de6a323c5b16dfb8e2cf4498ce7b7ff4ba85e3ab9771bcdbdc10f0",
-				"dweb:/ipfs/QmSqGs99MQMQxBnqQ6jW4LzmPscdEsUTMfNfGetM1FsDFT"
+				"bzz-raw://a158a9e643f065c213095b686fdda646e9356e86611b61538589e6e43c798f89",
+				"dweb:/ipfs/QmQgdvB3QWDWwgD1CKmyEa7zb27DigTaLwS8vjwCU8mvDu"
 			]
 		}
 	},
