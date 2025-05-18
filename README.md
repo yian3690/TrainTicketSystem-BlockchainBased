@@ -1,16 +1,16 @@
 ﻿# TrainTicketSystem-MadeByChainBlock
 
 ## 前置流程:
-在專案資料夾中按右鍵開啟終端並輸入
-npm init -y
-npm install express mysql2 cors
+在專案資料夾中按右鍵開啟終端並輸入<hr>
+npm init -y <hr>
+npm install express mysql2 cors <hr>
 
 分別
 建立 package.json
 安裝後端用的套件（Express 網頁伺服器、MySQL 資料庫、CORS 跨來源存取）
 
 ## 使用方法:
-1.先開啟xampp中的Apache及My SQL
+1.先開啟xampp中的Apache及My SQL  <hr>
 2.在Remix中先編譯合約
 3.開啟Gnache，在Remix中使用External Provider，將Gnache的網域貼上
 4.MetaMask 連接區塊鏈的Private Key
