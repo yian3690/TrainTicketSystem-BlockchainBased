@@ -1,13 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>我的票券</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
-  <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+
+  <!--CSS-->
+  <link rel="stylesheet" href="styles/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">  <!--sweetalert2 css-->
+  
 </head>
 <body>
   <!-- Header Bar -->
@@ -28,16 +29,21 @@
   </header>
 
   <main>
+  <!--背景圖片-->
+  <div class="background-image"><div class="dark-overlay"></div></div></div>
+
     <div class="left-aligned">
-      <h2>我的車票</h2>
+      <h2 class = "title">我的車票</h2>
     </div>
     <div class = "main-block">
       <p id="contractAddress">合約地址: </p>
       <p id="accountArea"></p>
 
-     
+     <hr class="myTicket-head-divider">
 
       <h2>🎫 我的票券</h2>
+
+      <!--顯示車票-->
       <ul id="myTickets"></ul>
     </div>
 
@@ -52,7 +58,13 @@
 
   
   <!-- script 放在這裡 -->
-  <script src="app.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+  <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script> <!--QR Code套件--> 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>             <!-- sweetalert2 -->
+
+
+  <script src="js/app.js" defer></script>
 </body>
 </html>
 

@@ -1,4 +1,3 @@
-
 // 用於記錄當前正在輸入的欄位（departure 或 destination）
 let currentInput = null;
 
@@ -59,7 +58,16 @@ function selectStation(name) {
   currentInput = null;
 }
 
-
+// 當點擊畫面上其他地方時，若不是選單或選單按鈕，就關閉選單
+document.addEventListener('click', (e) => {
+  const list = document.getElementById('stationList');
+  // 如果點擊的不是清單本身，且不是呼叫 toggleStationList 的按鈕
+  if (!list.contains(e.target) && !e.target.matches('button[onclick^="toggleStationList"]')) {
+    list.classList.add('hidden'); // 隱藏清單
+    stationListVisible = false;
+    currentInput = null;
+  }
+});
 
 
 
@@ -80,6 +88,7 @@ document.getElementById('timeTableForm').addEventListener('submit', async (e) =>
   // 清空時刻表查詢結果區域
   const results = document.getElementById('timeTableResults');
   results.innerHTML = '';
+results.style.paddingBottom = '120px'; // 有查詢結果才加 padding
 
   // 建立表格元素
   const table = document.createElement('table');

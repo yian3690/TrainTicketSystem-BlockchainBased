@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>時刻表查詢</title>
+
+  <!--CSS-->
+  <link rel="stylesheet" href="styles/style.css" />
+  
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="header-bar">
+    <div class="header-content">
+      <div class="left-group">
+        <img src="img/logo.jpg" alt="火車LOGO" class="logo" />
+        <h1> 區塊鏈火車購票系統</h1>
+      </div>
+
+      <div class="right-group">
+        <a href="timeTable.html" class="header-button">時刻表查詢</a>
+        <a href="index.html" class="header-button">線上訂票</a>
+        <span class="header-button" onclick="connectWallet()">連接 MetaMask</span>
+        <a href="myTicket.html" class="header-button">我的票券</a>
+      </div>
+    </div>
+  </header>
+
+
+
+
+
+
+  <main>
+    <!--背景圖片-->
+    <div class="background-image"><div class="dark-overlay"></div></div></div>
+
+    <div class="left-aligned">
+      <h2  class = "title">時刻表查詢</h2>
+    </div>
+    <div class = "main-block">
+      <form id="timeTableForm">
+        <div class="purchase-info">
+          <div class="station-pair">
+            <label for="departure"><strong>出發站：</strong></label>
+
+            <div class="input-group">
+              <div class="input-wrapper">
+                <input type="text" id="departure" readonly required />
+                <button type="button" class="icon-button" onclick="toggleStationList('departure', this)">
+                  <img src="img/map-icon.jpg" alt="選擇站點" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="station-pair">
+            <label for="destination"><strong>抵達站：</strong></label>
+
+            <div class="input-group">
+              <div class="input-wrapper">
+                <input type="text" id="destination" readonly required />
+                <button type="button" class="icon-button" onclick="toggleStationList('destination', this)">
+                  <img src="img/map-icon.jpg" alt="選擇站點" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="left-aligned">
+          <strong><label>日期：</label></strong>
+            <input type="date" id="travelDate" required /><br/>
+        </div>
+      </form>
+
+      
+    </div>
+
+    <div class="right-aligned">
+      <button type="submit" class = "submit-button" form="timeTableForm">查詢</button>
+    </div>
+
+    
+
+  </main>
+
+   <!-- 車站選單 (因是使用絕對定位,所以要在main外) -->
+  <div id="stationList" class="station-list hidden"></div>
+
+  <!--顯示時刻表-->
+   <div id="timeTableResults"  class="left-aligned"></div>
+
+  <!-- Footer Bar -->
+  <footer class="footer-bar">
+    <p>© 2025 火車購票系統 | Powered by Blockchain</p>
+  </footer>
+
+  <!-- script 放在這裡 -->
+  <script src="js/timeTable.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+  <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+</body>
+</html>
+
