@@ -11,13 +11,14 @@ npm install express mysql2 cors <br>
 
 ## 使用方法:
 1.先開啟xampp中的Apache及My SQL  <br>
-2.在Remix中先編譯合約
-3.開啟Gnache，在Remix中使用External Provider，將Gnache的網域貼上
-4.MetaMask 連接區塊鏈的Private Key
-5.到 Epoch Converter - Unix Timestamp Converter 轉換合約結束時間
-6.連接 Gnache 中區塊鏈的合約擁有者
-7:建立完成後，到app.js修改合約位址
+2.在Remix中先編譯合約<br>
+3.開啟Gnache，在Remix中使用External Provider，將Gnache的網域貼上<br>
+4.MetaMask 連接區塊鏈的Private Key<br>
+5.到 Epoch Converter - Unix Timestamp Converter 轉換合約結束時間<br>
+6.連接 Gnache 中區塊鏈的合約擁有者<br>
+7:建立完成後，到app.js修改合約位址<br>
 
-在終端執行:1、:node server.js
-    		  2、:python -m http.server
+在終端執行:<br>
+1.:node server.js<br>
+2.:python -m http.server<br>
 在網頁輸入:http://localhost:8000/
