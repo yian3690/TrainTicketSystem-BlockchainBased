@@ -9,7 +9,7 @@ npm install express mysql2 cors <br>
 建立 package.json
 安裝後端用的套件（Express 網頁伺服器、MySQL 資料庫、CORS 跨來源存取）
 
-## MetaMask與Gnache設置:
+## MetaMask與Ganache設置:
 <img src="assets/usage-step-1.png" width="800"/>
 <img src="assets/usage-step-2.png" width="800"/>
 <img src="assets/usage-step-3.png" width="800"/>
@@ -25,7 +25,7 @@ npm install express mysql2 cors <br>
 
 4.MetaMask 連接區塊鏈的Private Key<br>
 5.到 Epoch Converter - Unix Timestamp Converter:https://www.epochconverter.com/ 轉換合約結束時間<br>
-6.連接 Gnache 中區塊鏈的合約擁有者<br>
+6.連接 Ganache 中區塊鏈的合約擁有者<br>
 7:建立完成後，到app.js修改合約位址<br>
 <img src="assets/compile-step-5.png" width="800"/><br>
 <img src="assets/compile-step-6.png" width="800"/><br>
