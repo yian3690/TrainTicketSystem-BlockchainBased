@@ -11,6 +11,8 @@ npm install express mysql2 cors <br>
 
 ## 使用方法:
 1.先開啟xampp中的Apache及My SQL  <br>
+<img src="assets/compile-step-1.png" width="600"/>
+
 2.在Remix中先編譯合約<br>
 3.開啟Gnache，在Remix中使用External Provider，將Gnache的網域貼上<br>
 4.MetaMask 連接區塊鏈的Private Key<br>
