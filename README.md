@@ -12,7 +12,9 @@ npm install express mysql2 cors <br>
 ## MetaMask與Ganache設置:
 <img src="assets/usage-step-1.png" width="800"/>
 <img src="assets/usage-step-2.png" width="800"/>
-<img src="assets/usage-step-3.png" width="800"/>
+<img src="assets/usage-step-3.png" width="800"/><br>
+
+注意:MetaMask所連接的網域要是Gnache的位址，Port:1337同時只能有一個<br>
 
 ## 使用方法:
 1.先開啟xampp中的Apache及My SQL  <br>
