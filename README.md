@@ -38,11 +38,11 @@ npm install express mysql2 cors <br>
 在網頁輸入:http://localhost:8000/
 
 ## 專案展示:
-**時刻表查詢** <br>
+### 時刻表查詢
 <img src="assets/timeTable-1.png" width="800"/><br>
 <img src="assets/timeTable-2.png" width="800"/><br>
-**訂票** <br>
+### 訂票
 <img src="assets/reservation-1.png" width="800"/><br>
 <img src="assets/reservation-2.png" width="800"/><br>
-**查看車票** <br>
+### 查看車票
 <img src="assets/myTicket.png" width="800"/><br>
